@@ -19,7 +19,10 @@
         </form>
     </div>
     <ul>
-        <li th:each=" diary : ${diaries}"><span th:text="${diary.title}"></span></li>
+        <li th:each=" diary : ${diaries}">
+            <span th:text="${diary.title}"></span>
+            <a th:href="@{/delete-diary(id=${diary.id})}">[X]</a>
+        </li>
     </ul>
 </body>
 </html>

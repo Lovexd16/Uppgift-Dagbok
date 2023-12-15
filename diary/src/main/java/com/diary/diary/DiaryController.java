@@ -36,4 +36,13 @@ public class DiaryController {
 
         return "redirect:/";
     }
+
+    @GetMapping("/delete-diary")
+    public String delete(@RequestParam int id) {
+
+        System.out.println("Tog bort: " + id);
+        diaryRepository.deleteById(id);
+
+        return "redirect:/";
+    }
 }

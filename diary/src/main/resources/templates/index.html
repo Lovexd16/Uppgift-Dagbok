@@ -20,7 +20,7 @@
     </div>
     <ul>
         <li th:each=" diary : ${diaries}">
-            <span th:text="${diary.title}"></span>
+            <span th:text="${diary.title + ' - ' + diary.date}"></span>
             <a th:href="@{/delete-diary(id=${diary.id})}">[X]</a>
         </li>
     </ul>

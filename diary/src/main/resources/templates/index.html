@@ -23,6 +23,7 @@
             <a th:href="@{/diary/{diaryTitle}(diaryTitle=${diary.title})}">
                 <span th:text="${diary.title + ' - ' + diary.date}"></span>
             </a>
+            <a th:href="@{/edit-diary/{id}(id=${diary.id})}">[Edit]</a>
             <a th:href="@{/delete-diary(id=${diary.id})}">[X]</a>
         </li>
     </ul>

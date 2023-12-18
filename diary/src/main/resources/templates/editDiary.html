@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Diary</title>
+</head>
+<body>
+    <h1>Redigera dagboksinlägg</h1>
+    <form method="post" th:action="@{/update-diary}">
+        <input type="hidden" name="id" th:value="${diary.id}">
+
+        <input type="text" name="title" th:value="${diary.title}" required>
+        <textarea name="text" th:text="${diary.text}" required></textarea>
+        <input type="date" name="date" th:value="${diary.date}" required>
+
+        <button>Spara ändringar</button>
+    </form>
+</body>
+</html>

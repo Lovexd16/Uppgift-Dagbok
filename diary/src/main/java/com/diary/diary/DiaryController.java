@@ -25,7 +25,7 @@ public class DiaryController {
 
     @PostMapping("/new-diary")
     public String addNew(@RequestParam("title") String diaryTitle, @RequestParam("text") String diaryText, @RequestParam("date") Date diaryDate) {
-        System.out.println("Nytt inlägg: " + diaryTitle + " " + diaryText + " " + diaryDate);
+        System.out.println("Nytt inlägg! Titel: " + diaryTitle + ", Text: " + diaryText + ", Datum: " + diaryDate);
 
         Diary diary = new Diary();
         diary.setTitle(diaryTitle);
@@ -39,7 +39,7 @@ public class DiaryController {
     @GetMapping("/delete-diary")
     public String delete(@RequestParam int id) {
 
-        System.out.println("Tog bort: " + id);
+        System.out.println("Tog bort inlägg med id: " + id);
         diaryRepository.deleteById(id);
 
         return "redirect:/";

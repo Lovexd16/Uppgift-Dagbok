@@ -1,6 +1,8 @@
 package com.diary.diary;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,8 +19,9 @@ public class DiaryController {
     
     @GetMapping
     public String getIndex(Model model) {
-
-        model.addAttribute("diaries", diaryRepository.findAll());
+        Date currentDate = java.sql.Date.valueOf(LocalDate.now());
+        List<Diary> diaries = diaryRepository.relevantDiaries(currentDate);
+        model.addAttribute("diaries", diaries);
 
         return "index";
     }

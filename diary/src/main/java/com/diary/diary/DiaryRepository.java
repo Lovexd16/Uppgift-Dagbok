@@ -12,4 +12,7 @@ public interface DiaryRepository extends CrudRepository<Diary, Integer> {
 
     @Query("SELECT d FROM Diary d WHERE d.date <= :currentDate")
     List<Diary> relevantDiaries(@Param("currentDate") Date currentDate);
+
+    @Query("SELECT d FROM Diary d WHERE d.date BETWEEN :startDate AND :endDate")
+    List<Diary> betweenDatesDiaries(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 }

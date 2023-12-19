@@ -6,14 +6,14 @@
     <title>Diary</title>
 </head>
 <body>
-    <h1>Dagbok</h1>
+    <h1>Lägg till inlägg</h1>
     <div>
         <form method="post" th:action="@{/new-diary}">
-            <input type="text" name="title" id="title" placeholder="Ange titeln" required>
+            <input type="text" name="title" placeholder="Ange titeln" required>
 
-            <textarea name="text" id="text" placeholder="Ange text" required></textarea>
+            <textarea name="text" placeholder="Ange text" required></textarea>
 
-            <input type="date" name="date" id="date" placeholder="Ange datum" required>
+            <input type="date" name="date" placeholder="Ange datum" required>
 
             <button>Spara</button>
         </form>
@@ -27,5 +27,25 @@
             <a th:href="@{/delete-diary(id=${diary.id})}">[X]</a>
         </li>
     </ul>
+
+    <h1>Se inlägg mellan valda datum</h1>
+    <form method="get" th:action="@{/between-dates-diary-result}">
+        <label for="startDate">Ange första datumet:</label>
+        <input type="date" name="startDate" th:value="${startDate}" required>
+
+        <label for="endDate">Ange andra datumet:</label>
+        <input type="date" name="endDate" th:value="${endDate}" required>
+
+        <button type="submit">Sök</button>
+    </form>
+
+    <ul th:if="${diariesBetweenDates != null}">
+        <li th:each="diary : ${diariesBetweenDates}">
+            <a th:href="@{/diary/{diaryTitle}(diaryTitle=${diary.title})}">
+                <span th:text="${diary.title + ' - ' + diary.date}"></span>
+            </a>
+        </li>
+    </ul>
+
 </body>
 </html>

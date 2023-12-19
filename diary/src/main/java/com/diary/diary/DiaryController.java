@@ -47,4 +47,24 @@ public class DiaryController {
 
         return "redirect:/";
     }
+
+    @GetMapping("/diaries-between-dates")
+    public String findDiariesBetweenDates() {
+        return "betweenDatesDiary";
+    }
+
+    @GetMapping("/between-dates-diary-result")
+    public String showBetweenDatesDiaryResult(@RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate, Model model) {
+
+        System.out.println("Du sökte mellan datumen: " + startDate + " och " + endDate);
+
+        List<Diary> diaries = diaryRepository.relevantDiaries(java.sql.Date.valueOf(LocalDate.now()));
+        List<Diary> diariesBetweenDates = diaryRepository.betweenDatesDiaries(startDate, endDate);
+        model.addAttribute("diaries", diaries);
+        model.addAttribute("diariesBetweenDates", diariesBetweenDates);
+        model.addAttribute("startDate", startDate);
+        model.addAttribute("endDate", endDate);
+
+        return "index";
+    }
 }

@@ -17,6 +17,7 @@ public class DiaryController {
     @Autowired
     private DiaryRepository diaryRepository;
     
+    //Visar de inlägg som inte ligger i framtiden
     @GetMapping
     public String getIndex(Model model) {
         Date currentDate = java.sql.Date.valueOf(LocalDate.now());
@@ -26,6 +27,7 @@ public class DiaryController {
         return "index";
     }
 
+    //PostMapping för att lägga till ett nytt inlägg
     @PostMapping("/new-diary")
     public String addNew(@RequestParam("title") String diaryTitle, @RequestParam("text") String diaryText, @RequestParam("date") Date diaryDate) {
         System.out.println("Nytt inlägg! Titel: " + diaryTitle + ", Text: " + diaryText + ", Datum: " + diaryDate);
@@ -39,6 +41,7 @@ public class DiaryController {
         return "redirect:/";
     }
 
+    //GetMapping för att ta bort inlägg genom id
     @GetMapping("/delete-diary")
     public String delete(@RequestParam int id) {
 
@@ -53,6 +56,7 @@ public class DiaryController {
         return "betweenDatesDiary";
     }
 
+    //GetMapping för att visa en lista med inlägg mellan valda datum
     @GetMapping("/between-dates-diary-result")
     public String showBetweenDatesDiaryResult(@RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate, Model model) {
 

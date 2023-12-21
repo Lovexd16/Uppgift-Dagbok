@@ -17,6 +17,7 @@ public class EditDiaryController {
     @Autowired
     private DiaryRepository diaryRepository;
 
+    //Visar sidan det inlägg man tryckt edit för med hjälp av id. om det inte hittas skickas man till startsidan.
     @GetMapping("/edit-diary/{id}")
     public String edit(@PathVariable int id, Model model) {
         System.out.println("Du tryckte edit på: " + id);
@@ -29,6 +30,7 @@ public class EditDiaryController {
         }
     }
 
+    //Ändrar inlägget och skickar sedan användaren till startsidan
     @Transactional
     @PostMapping("/update-diary")
     public String update(@RequestParam int id, @RequestParam("title") String diaryTitle, 

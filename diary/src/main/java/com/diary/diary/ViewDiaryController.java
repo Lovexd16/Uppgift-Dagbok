@@ -12,6 +12,7 @@ public class ViewDiaryController {
     @Autowired
     private DiaryRepository diaryRepository;
 
+    //Visar det inlägget som man tryckt på. Syftet är att visa texten för inlägget på en enskild sida
     @GetMapping("/diary/{diaryTitle}")
     String getDiary(@PathVariable String diaryTitle, Model model) {
         System.out.println("Du gick in på: " + diaryTitle);
